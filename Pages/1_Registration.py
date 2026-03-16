@@ -1,6 +1,7 @@
 import streamlit as st
 from database import verify_user, add_user
-
+if st.button("Back to Home"):
+ st.switch_page("main.py")
 st.set_page_config(page_title="User Profile")
 st.title("👤 Campus User Portal")
 
