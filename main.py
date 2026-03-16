@@ -9,6 +9,7 @@ st.title("🏡 Campus Marketplace Home")
 # Check if user is logged in
 if 'logged_in' in st.session_state and st.session_state['logged_in']:
  username = st.session_state['username']
+ #st.markdown(f"### Welcome back, **{username}**!")
 
 # Dashboard Logic: Fetch current balance from CSV
  df = pd.read_csv("users.csv")
@@ -33,9 +34,15 @@ if 'logged_in' in st.session_state and st.session_state['logged_in']:
   st.info("Navigate to the **Marketplace** in the sidebar to start shopping!")
 
 else:
- st.write("### Welcome to the Campus Marketplace!")
- st.write("Please go to the **Registration** page in the sidebar to log in and see your dashboard.")
+# --- LOGGED OUT VIEW ---
+   st.write("### Welcome to the Campus Marketplace!")
 
-# Professional Hero Image/Banner
- st.image("https://images.unsplash.com/photo-1523240715632-09c6310e23f8?auto=format&fit=crop&w=800&q=80",
- caption="Connecting Campus Services")
+   st.divider()
+   st.info("Ready to get started? Log in to access your dashboard and funds.")
+
+# This is the important new button!
+   if st.button("👉 Click here to Go to Registration"):
+# This will only work once your GitHub folder is lowercase 'pages'
+     st.switch_page("pages/1_Registration.py")
+
+   st.divider()
