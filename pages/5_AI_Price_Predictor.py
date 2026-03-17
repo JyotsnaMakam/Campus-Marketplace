@@ -17,10 +17,10 @@ if os.path.exists('price_predictor.pkl'):
 
 # 2. Get categories for the dropdown
  df = pd.read_csv("kaggle_users.csv",encoding='latin1')
- categories = sorted(df['Category'].dropna().unique())
+ categories = sorted(df['gender'].dropna().unique())
 
 # 3. User Interaction
- selected_cat = st.selectbox("Select a Service Category:", categories)
+ selected_cat = st.selectbox("Select a gender Category:", categories)
 
  if st.button("Predict Price"):
 # Simple encoding: find the index of the selected category
