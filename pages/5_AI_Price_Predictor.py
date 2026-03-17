@@ -16,7 +16,7 @@ if os.path.exists('price_predictor.pkl'):
  st.write("This tool uses a **Random Forest model** to estimate the market value of a service based on its category.")
 
 # 2. Get categories for the dropdown
- df = pd.read_csv("kaggle_users.csv")
+ df = pd.read_csv("kaggle_users.csv",encoding='latin1')
  categories = sorted(df['Category'].dropna().unique())
 
 # 3. User Interaction
