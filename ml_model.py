@@ -27,22 +27,3 @@ model.fit(X_train,y_train)
 with open('Price_predictor.pk1','wb')as f:
   pickle.dump(model,f)
 print("Model trained and saved successfully!")  
-import streamlit as st
-import pickle
-import numpy as np
-
-# Load the saved model
-with open('price_predictor.pkl', 'rb') as f:
-loaded_model = pickle.load(f)
-
-st.header("🤖 AI Service Price Predictor")
-st.write("Not sure how much to charge? Let our ML model estimate a fair price.")
-
-# User input
-category_input = st.selectbox("Select Service Category", ["Tutoring", "Delivery", "Tech Support"])
-
-# (You would use the same LabelEncoder from Phase 1 here to convert the input)
-# For now, let's assume 'Tutoring' = 1
-if st.button("Predict Price"):
-prediction = loaded_model.predict([[1]]) # Example input
-st.success(f"Estimated Market Price: ${prediction[0]:.2f}")
