@@ -1,4 +1,5 @@
 import pandas as pd
+import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import LabelEncoder
@@ -8,7 +9,7 @@ df = pd.read_csv("kaggle_users.csv",encoding='latin1')
 # This is the safest way to avoid the "NaN error"
 df = df.dropna(subset=['tweet_count', 'gender'])
 # 3. Fill NaN values in other columns with a default value if needed
-df['Description'] = df['Description'].fillna("No description provided")
+df['description'] = df['description'].fillna("No description provided")
 # 4. Encode text data into numbers (Models only understand numbers!)
 le = LabelEncoder()
 df['Category_Encoded'] = le.fit_transform(df['gender'])
@@ -18,6 +19,6 @@ y = df['tweet_count']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 model=RandomForestRegressor(n_estimators=100)
 model.fit(X_train,y_train)
-with open('Price_predictor.pk1','wb')as f:
+with open('price_predictor.pk1','wb')as f:
   pickle.dump(model,f)
 print("Model trained and saved successfully!")  
